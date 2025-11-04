@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsha.portfolio - Contact</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Contact Me</h1>
+            <br>
+            <a href="#about"><button class="button" style="font-size:20px">About</button></a>
+            <a href="skills.html"><button class="button" style="font-size:20px">Skills</button></a>
+            <a href="projects.html"><button class="button" style="font-size:20px">Projects</button></a>
+            <a href="contact.html"><button class="button" style="font-size:20px">Contacts</button></a>
+        </div>
+    </header>
+    <main>
+        <section id="contact">
+            <h1>Contact me</h1>
+            <p style="font-size:20px">If you're interested, feel free to contact me using the form below:</p>
+            <p style="font-size:12px">(After filling the details, click on submit. It will provide my email address)</p>
+            <form action="" method="POST" style="font-size:20px">
+                <div>
+                    <label for="name">Name:</label>
+                    <input id="name" type="text">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input id="email" type="email">
+                </div>
+                <div>
+                    <label for="dob" value="Date of Birth"><b>DOB (Date of birth)</b></label>
+                    <input id="dob" type="date" name="DOB">
+                </div>
+                <div>
+                    <b>Choose your Gender:</b>
+                    <input type="radio" id="male" name="gender">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender">
+                    <label for="female">Female</label>
+                </div>
+                <label for="jj" value="comments"><h2>Comment on me</h2></label>
+                <textarea id="jj" rows="10" cols="70" placeholder="optional"></textarea>
+                <br>
+                <button type="submit" class="submit" required>submit</button>
+            </form>
+        </section>
+    </main>
+    <button class="up">up</button>
+    <footer>
+        @2025 portfolio
+    </footer>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const dob = document.getElementById('dob').value;
+            const male = document.getElementById('male').checked;
+            const female = document.getElementById('female').checked;
+            const comments = document.getElementById('jj').value.trim();
+
+            let errors = [];
+
+            if (!name) {
+                errors.push('Name is required.');
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                errors.push('A valid email is required.');
+            }
+
+            if (!dob) {
+                errors.push('Date of Birth is required.');
+            }
+
+            if (!male && !female) {
+                errors.push('Please select your gender.');
+            }
+
+            if (errors.length > 0) {
+                alert('Please fix the following errors:\n' + errors.join('\n'));
+                event.preventDefault();
+            } else {
+                // Log details to console
+                console.log('Form submitted with details:');
+                console.log('Name:', name);
+                console.log('Email:', email);
+                console.log('Date of Birth:', dob);
+                console.log('Gender:', male ? 'Male' : 'Female');
+                console.log('Comments:', comments || 'None');
+            }
+        });
+    </script>
+</body>
+</html>
